@@ -1,0 +1,87 @@
+class LapakItem {
+  final String id;
+  final String judul;
+  final String pemilik;
+  final String kategori; // 'Jasa Tukang', 'Jual Beli', 'Info Warga'
+  final String deskripsi;
+  final String estimasiHarga;
+  final String noHp;
+  final String alamat;
+  final double latitude;
+  final double longitude;
+  final String jarak;
+  final bool isBuka;
+  final List<String> fotoUrls;
+
+  LapakItem({
+    required this.id,
+    required this.judul,
+    required this.pemilik,
+    required this.kategori,
+    required this.deskripsi,
+    required this.estimasiHarga,
+    required this.noHp,
+    required this.alamat,
+    required this.latitude,
+    required this.longitude,
+    required this.jarak,
+    required this.isBuka,
+    required this.fotoUrls,
+  });
+}
+
+// Data Dummy Awal untuk Testing UI
+final List<LapakItem> dummyLapakList = [
+  LapakItem(
+    id: '1',
+    judul: 'Bengkel Motor Mas Budi',
+    pemilik: 'Budi Santoso',
+    kategori: 'Jasa Tukang',
+    deskripsi: 'Servis rutin, ganti oli, tambal ban tubeless, dan kelistrikan motor. Bisa dipanggil ke rumah area RW 05.',
+    estimasiHarga: 'Mulai Rp 15.000',
+    noHp: '081234567890',
+    alamat: 'Jl. Melati Blok C No. 12 (Depan Pos Ronda)',
+    latitude: -6.9215,
+    longitude: 106.9261,
+    jarak: '250 m',
+    isBuka: true,
+    fotoUrls: [
+      'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1625047509168-a7026f36de04?auto=format&fit=crop&w=800&q=80',
+    ],
+  ),
+  LapakItem(
+    id: '2',
+    judul: 'Servis AC & Kulkas Pak Hendra',
+    pemilik: 'Hendra Wijaya',
+    kategori: 'Jasa Tukang',
+    deskripsi: 'Cuci AC, isi freon, perbaikan kulkas dan mesin cuci segala merk. Garansi servis 1 bulan.',
+    estimasiHarga: 'Mulai Rp 65.000',
+    noHp: '085712345678',
+    alamat: 'Gang Mawar RT 03 / RW 05',
+    latitude: -6.9220,
+    longitude: 106.9270,
+    jarak: '450 m',
+    isBuka: true,
+    fotoUrls: [
+      'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=800&q=80',
+    ],
+  ),
+  LapakItem(
+    id: '3',
+    judul: 'Nasi Uduk & Gorengan Bu Siti',
+    pemilik: 'Siti Aminah',
+    kategori: 'Jual Beli',
+    deskripsi: 'Buka setiap pagi jam 06.00 - 10.00. Tersedia nasi uduk komplit, bihun, semur jengkol, dan bakwan hangat.',
+    estimasiHarga: 'Rp 10.000 / porsi',
+    noHp: '089698765432',
+    alamat: 'Blok A2 No. 4 (Samping Masjid Al-Ikhlas)',
+    latitude: -6.9205,
+    longitude: 106.9255,
+    jarak: '120 m',
+    isBuka: true,
+    fotoUrls: [
+      'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=80',
+    ],
+  ),
+];
