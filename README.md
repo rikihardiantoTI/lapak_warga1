@@ -1,17 +1,20 @@
-# lapak_warga
+# Lapak Warga
 
-A new Flutter project.
+Aplikasi Flutter untuk menemukan lapak, kuliner, dan jasa warga di sekitar lingkungan.
 
-## Getting Started
+## Menjalankan aplikasi
 
-This project is a starting point for a Flutter application.
+```shell
+flutter pub get
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Fitur UI
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- Beranda dengan pencarian dan filter lapak.
+- Katalog layanan warga.
+- Detail lapak dengan aksi telepon, peta, favorit, dan chat.
+- Form untuk menambahkan lapak.
+- Daftar percakapan dan halaman profil.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Data pada versi ini masih berupa contoh lokal. Lapak baru dan percakapan belum tersimpan ke server atau tersedia di perangkat lain; autentikasi, unggah foto, notifikasi, pembayaran, dan pemrosesan pesanan membutuhkan layanan backend.

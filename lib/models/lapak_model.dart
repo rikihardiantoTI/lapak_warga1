@@ -12,6 +12,9 @@ class LapakItem {
   final String jarak;
   final bool isBuka;
   final List<String> fotoUrls;
+  final double rating;
+  final int jumlahUlasan;
+  final bool terverifikasi;
 
   LapakItem({
     required this.id,
@@ -27,6 +30,9 @@ class LapakItem {
     required this.jarak,
     required this.isBuka,
     required this.fotoUrls,
+    this.rating = 4.9,
+    this.jumlahUlasan = 24,
+    this.terverifikasi = true,
   });
 }
 
@@ -49,6 +55,8 @@ final List<LapakItem> dummyLapakList = [
       'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1625047509168-a7026f36de04?auto=format&fit=crop&w=800&q=80',
     ],
+    rating: 4.9,
+    jumlahUlasan: 42,
   ),
   LapakItem(
     id: '2',
@@ -66,6 +74,8 @@ final List<LapakItem> dummyLapakList = [
     fotoUrls: [
       'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=800&q=80',
     ],
+    rating: 4.8,
+    jumlahUlasan: 29,
   ),
   LapakItem(
     id: '3',
@@ -83,5 +93,64 @@ final List<LapakItem> dummyLapakList = [
     fotoUrls: [
       'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=80',
     ],
+    rating: 4.9,
+    jumlahUlasan: 42,
+  ),
+  LapakItem(
+    id: '4',
+    judul: 'Nasi Liwet & Sambal Mbak Ning',
+    pemilik: 'Ning Rahayu',
+    kategori: 'Jual Beli',
+    deskripsi: 'Nasi liwet hangat, lauk rumahan, dan aneka sambal. Bisa dipesan untuk makan siang.',
+    estimasiHarga: 'Mulai Rp 12.000',
+    noHp: '081298765432',
+    alamat: 'Gang Kenanga No. 8, RT 02 / RW 05',
+    latitude: -6.9210,
+    longitude: 106.9265,
+    jarak: '350 m',
+    isBuka: true,
+    fotoUrls: [
+      'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80',
+    ],
+    rating: 4.8,
+    jumlahUlasan: 29,
+  ),
+  LapakItem(
+    id: '5',
+    judul: 'Jajanan Pasar Bu Sri',
+    pemilik: 'Sri Wahyuni',
+    kategori: 'Jual Beli',
+    deskripsi: 'Risoles, lemper ayam, dan jajanan pasar dibuat segar setiap pagi. Pesan lebih awal untuk acara.',
+    estimasiHarga: 'Mulai Rp 3.000',
+    noHp: '081377665544',
+    alamat: 'Jl. Anggrek No. 5, RT 04 / RW 05',
+    latitude: -6.9207,
+    longitude: 106.9275,
+    jarak: '500 m',
+    isBuka: true,
+    fotoUrls: [
+      'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=80',
+    ],
+    rating: 5.0,
+    jumlahUlasan: 18,
+  ),
+  LapakItem(
+    id: '6',
+    judul: 'Tukang Ledeng Pak Slamet',
+    pemilik: 'Slamet Riyadi',
+    kategori: 'Jasa Tukang',
+    deskripsi: 'Perbaikan keran, saluran mampet, dan kebocoran pipa. Melayani panggilan di sekitar RW 05.',
+    estimasiHarga: 'Mulai Rp 50.000',
+    noHp: '081234567891',
+    alamat: 'RT 01 / RW 05, dekat pos ronda',
+    latitude: -6.9225,
+    longitude: 106.9259,
+    jarak: '600 m',
+    isBuka: true,
+    fotoUrls: [
+      'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=800&q=80',
+    ],
+    rating: 4.7,
+    jumlahUlasan: 16,
   ),
 ];

@@ -10,126 +10,139 @@ class LapakCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     return Card(
-      margin: const EdgeInsets.only(bottom: 14),
-      elevation: 0.5,
+      margin: const EdgeInsets.only(bottom: 12),
       color: Colors.white,
+      elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-        side: BorderSide(color: Colors.grey.shade200),
+        borderRadius: BorderRadius.circular(18),
+        side: const BorderSide(color: Color(0xFFE9EFED)),
       ),
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
-        borderRadius: BorderRadius.circular(14),
         onTap: onTap,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Foto Bengkel / Lapak
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(14)),
-                  child: Image.network(
-                    item.fotoUrls.first,
-                    height: 150,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, _, _) => Container(
-                      height: 150,
-                      color: Colors.grey.shade200,
-                      child: const Center(child: Icon(LucideIcons.image, size: 40, color: Colors.grey)),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 10,
-                  left: 10,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.7),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      item.kategori,
-                      style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 10,
-                  right: 10,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: item.isBuka ? Colors.green.shade600 : Colors.red.shade600,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      item.isBuka ? 'BUKA' : 'TUTUP',
-                      style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          item.judul,
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(13),
+                child: SizedBox(
+                  width: 104,
+                  height: 112,
+                  child: item.fotoUrls.isEmpty
+                      ? _imageFallback()
+                      : Image.network(
+                          item.fotoUrls.first,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, _, _) => _imageFallback(),
                         ),
-                      ),
-                      Row(
-                        children: [
-                          const Icon(LucideIcons.navigation, size: 13, color: Color(0xFF0D9488)),
-                          const SizedBox(width: 4),
-                          Text(
-                            item.jarak,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF0D9488),
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            item.kategori,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: colors.primary,
+                              fontSize: 11,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
-                        ],
+                        ),
+                        Icon(LucideIcons.star, size: 13, color: Colors.amber.shade700),
+                        const SizedBox(width: 3),
+                        Text(
+                          item.rating.toStringAsFixed(1),
+                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      item.judul,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        height: 1.25,
+                        fontWeight: FontWeight.w700,
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    item.deskripsi,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        item.estimasiHarga,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.black87),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      item.deskripsi,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.blueGrey.shade600,
+                        fontSize: 12,
+                        height: 1.35,
                       ),
-                      Text(
-                        'Oleh: ${item.pemilik}',
-                        style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+                    ),
+                    const SizedBox(height: 9),
+                    Row(
+                      children: [
+                        Icon(LucideIcons.mapPin, size: 13, color: Colors.blueGrey.shade500),
+                        const SizedBox(width: 4),
+                        Text(
+                          item.jarak,
+                          style: TextStyle(fontSize: 11, color: Colors.blueGrey.shade600),
+                        ),
+                        const Spacer(),
+                        Container(
+                          width: 7,
+                          height: 7,
+                          decoration: BoxDecoration(
+                            color: item.isBuka ? const Color(0xFF1A9A71) : Colors.grey,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          item.isBuka ? 'Buka' : 'Tutup',
+                          style: TextStyle(
+                            color: item.isBuka ? const Color(0xFF17815F) : Colors.grey.shade600,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 7),
+                    Text(
+                      item.estimasiHarga,
+                      style: TextStyle(
+                        color: colors.primary,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w800,
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _imageFallback() {
+    return Container(
+      color: const Color(0xFFE8F2EF),
+      alignment: Alignment.center,
+      child: const Icon(LucideIcons.store, size: 28, color: Color(0xFF0F766E)),
     );
   }
 }
