@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:lapak_warga/main.dart';
+import 'package:lapak_warga/models/lapak_model.dart';
+import 'package:lapak_warga/screens/chat_screen.dart';
 import 'package:lapak_warga/screens/lapak_form_screen.dart';
 
 void main() {
@@ -52,6 +54,43 @@ void main() {
     );
     expect(serviceChip.selected, isTrue);
     expect(find.text('3 ditemukan'), findsOneWidget);
+  });
+
+  testWidgets('Chat supports emoji messages and asks before sharing location', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(home: ChatScreen(lapak: dummyLapakList.first)),
+    );
+
+    expect(find.byTooltip('Telepon Budi Santoso'), findsOneWidget);
+    expect(find.byTooltip('Ambil foto'), findsOneWidget);
+    expect(find.byTooltip('Kirim lokasi'), findsOneWidget);
+    expect(find.byTooltip('Rekam voice note'), findsOneWidget);
+
+    await tester.enterText(find.byKey(const Key('chat-message-input')), 'Halo');
+    await tester.tap(find.byKey(const Key('chat-emoji-button')));
+    await tester.pumpAndSettle();
+    final smilingEmoji = find.text('😊').first;
+    await tester.ensureVisible(smilingEmoji);
+    await tester.pumpAndSettle();
+    await tester.tap(smilingEmoji);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Kirim pesan'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Halo😊'), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('chat-location-button')));
+    await tester.pumpAndSettle();
+    expect(find.text('Bagikan lokasi Anda?'), findsOneWidget);
+    expect(
+      find.textContaining('Lokasi perangkat saat ini akan dikirim'),
+      findsOneWidget,
+    );
+    await tester.tap(find.text('Batal'));
+    await tester.pumpAndSettle();
+    expect(find.text('Bagikan lokasi Anda?'), findsNothing);
   });
 
   testWidgets('New listing form reports required fields', (
