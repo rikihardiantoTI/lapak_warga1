@@ -36,6 +36,24 @@ void main() {
     expect(find.text('Identitas lapak'), findsOneWidget);
   });
 
+  testWidgets('Home quick actions filter nearby listings', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const LapakWargaApp());
+
+    final serviceAction = find.byKey(const Key('quick-category-services'));
+    await tester.ensureVisible(serviceAction);
+    await tester.pumpAndSettle();
+    await tester.tap(serviceAction);
+    await tester.pumpAndSettle();
+
+    final serviceChip = tester.widget<ChoiceChip>(
+      find.widgetWithText(ChoiceChip, 'Jasa Tukang'),
+    );
+    expect(serviceChip.selected, isTrue);
+    expect(find.text('3 ditemukan'), findsOneWidget);
+  });
+
   testWidgets('New listing form reports required fields', (
     WidgetTester tester,
   ) async {
